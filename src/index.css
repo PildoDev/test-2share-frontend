@@ -35,6 +35,14 @@ h1 {
   line-height: 1.1;
 }
 
+h1, h2, h3, h5, h6 {
+  color: #a8a2f0;
+}
+
+h4{
+  color: #f16e06;
+}
+
 button {
   border-radius: 8px;
   border: 1px solid transparent;
@@ -42,7 +50,6 @@ button {
   font-size: 1em;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
@@ -60,9 +67,9 @@ button:focus-visible {
     background-color: #ffffff;
   }
   a:hover {
-    color: #747bff;
+    color: #1b1750;
   }
-  button {
-    background-color: #f9f9f9;
+  h1,h2,h3,h5,h6 {
+    color: #1b1750;
   }
 }
