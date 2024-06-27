@@ -2,6 +2,7 @@
 
 import React, { useState } from 'react';
 import './login.css';
+import '../auth.css';
 
 const Login: React.FC = () => {
   const [email, setEmail] = useState('');
@@ -14,8 +15,8 @@ const Login: React.FC = () => {
   };
 
   return (
-    <div className="login-container">
-      <form onSubmit={handleSubmit} className="login-form">
+    <div className="auth-container">
+      <form onSubmit={handleSubmit} className="auth-form">
         <h2>2Share</h2>
         <h4>Login</h4>
         <div className="form-group">
@@ -39,7 +40,7 @@ const Login: React.FC = () => {
           />
         </div>
         <button type="submit">Login</button>
-        <div className="register">
+        <div className="under-options-auth">
           <span>Don't have an account? </span>
           <a href="/register">Register</a>
         </div>
