@@ -1,21 +1,43 @@
-import React, { useState } from 'react';
-import '../auth.css';
-import './register.css';
+import React, { useState } from "react";
+import "../auth.css";
+import "./register.css";
 
 const Register: React.FC = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [age, setAge] = useState('');
-  const [password, setPassword] = useState('');
+  const [fullname, setFullname] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
-    // Registration logic here
-    console.log('Name:', name);
-    console.log('Email:', email);
-    console.log('Age:', age);
-    console.log('Password:', password);
-    // You can add your API call or other logic for registration here
+    // console.log("Fullname:", fullname);
+    // console.log("Email:", email);
+    // console.log("Password:", password);
+
+    fetch('http://localhost:3000/api/users/signup', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ fullname, email, password }),
+    })
+    .then((response) => {
+      // console.log("Response:",response);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response.json();
+    })
+    .then((data) => {
+      // console.log("Data:",data);
+      alert(data.message);
+      if(data.data){
+        window.location.href = "/";
+      }
+    })
+    .catch((error) => {
+      console.error('Fetch error:', error);
+      alert("An error occurred. Please try again later.");
+    });
   };
 
   return (
@@ -24,12 +46,12 @@ const Register: React.FC = () => {
         <h2>2Share</h2>
         <h4>Register</h4>
         <div className="form-group">
-          <label htmlFor="name">Name:</label>
+          <label htmlFor="fullname">Full name:</label>
           <input
             type="text"
-            id="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
+            id="fullname"
+            value={fullname}
+            onChange={(e) => setFullname(e.target.value)}
             required
           />
         </div>
@@ -40,16 +62,6 @@ const Register: React.FC = () => {
             id="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label htmlFor="age">Age:</label>
-          <input
-            type="number"
-            id="age"
-            value={age}
-            onChange={(e) => setAge(e.target.value)}
             required
           />
         </div>
